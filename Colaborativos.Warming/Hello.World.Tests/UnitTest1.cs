@@ -7,20 +7,39 @@ namespace Hello.World.Tests
     [TestClass]
     public class UnitTest1
     {
+        string myName;
+        string resultadoEsperado;
+        string resultadoReal;
+        HelloWorldClient client = new HelloWorldClient();
+
         [TestMethod]
-        public void TestSayHelloMyName ()
+        public void TestSayHelloEmptyName()
         {
             // preparar el escenario
-            string myName = "Héctor";
-            string resultadoEsperado = "Hello World, Héctor";
-            string resultadoReal;
-            HelloWorldClient client = new HelloWorldClient();
+            myName = string.Empty;
+            resultadoEsperado = "Hello world";
 
             // invoco al método correspondiente
             resultadoReal = client.SayHello(myName);
 
             // comparación de resultados
-            Assert.AreEqual(resultadoEsperado, resultadoReal);
+            Assert.AreEqual(resultadoEsperado, resultadoReal, "El resultado esperado es ¨[{0}], pero el resultado real es [{1}]",
+                resultadoEsperado.ToString(), resultadoReal.ToString());
+
+        }
+        [TestMethod]
+        public void TestSayHelloMyName ()
+        {
+            // preparar el escenario
+            myName = "Héctor";
+            resultadoEsperado = "Hello world, Héctor";
+   
+            // invoco al método correspondiente
+            resultadoReal = client.SayHello(myName);
+
+            // comparación de resultados
+            Assert.AreEqual(resultadoEsperado, resultadoReal, "El resultado esperado es ¨[{0}], pero el resultado real es [{1}]",
+              resultadoEsperado.ToString(), resultadoReal.ToString());
 
         }
 
